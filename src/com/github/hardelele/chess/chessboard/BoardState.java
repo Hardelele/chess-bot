@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class BoardState implements Serializable {
 
-    public static final String letters = "A B C D E F G H";
+    public final String letters = "A B C D E F G H";
 
     HashMap<String,Square> squares = new HashMap<>();
 
@@ -24,4 +24,11 @@ public class BoardState implements Serializable {
         }
     }
 
+    public HashMap<String, Square> getSquares() {
+        return squares;
+    }
+
+    public void setSquares(HashMap<String, Square> squares) {
+        this.squares = squares;
+    }
 }
