@@ -8,6 +8,9 @@ public class Square {
 
     Coords coords;
 
+    private int whiteFiguresAbleToMove = 0;
+    private int blackFiguresAbleToMove = 0;
+
     Figure figure;
 
     {
@@ -40,5 +43,21 @@ public class Square {
 
     public void setFigure(Figure figure) {
         this.figure = figure;
+    }
+
+    public void setWhiteFiguresAbleToMove(int whiteFiguresAbleToMove) {
+        this.whiteFiguresAbleToMove = whiteFiguresAbleToMove;
+    }
+
+    public int getWhiteFiguresAbleToMove() {
+        return whiteFiguresAbleToMove;
+    }
+
+    public int getBlackFiguresAbleToMove() {
+        return blackFiguresAbleToMove;
+    }
+
+    public void setBlackFiguresAbleToMove(int blackFiguresAbleToMove) {
+        this.blackFiguresAbleToMove = blackFiguresAbleToMove;
     }
 }
