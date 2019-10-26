@@ -7,18 +7,19 @@ import java.util.StringTokenizer;
 
 public class BoardState implements Serializable {
 
-    private final String litters = "A B C D E F G H";
+    public static final String letters = "A B C D E F G H";
 
     HashMap<String,Square> squares = new HashMap<>();
 
     {
         StringTokenizer stringTokenizer;
-        String litter;
-        for (int i = 0; i<8; i++) {
-            stringTokenizer = new StringTokenizer(litters);
+        String letter;
+        for (int i = 1; i<=8; i++) {
+            stringTokenizer = new StringTokenizer(letters);
             for (int j = 0; j<8; j++) {
-                litter = stringTokenizer.nextToken();
-                squares.put(litter + i, new Square(i,litter));
+                letter = stringTokenizer.nextToken();
+                System.out.println(letter+i);
+                squares.put(letter + i, new Square(i,letter));
             }
         }
     }
