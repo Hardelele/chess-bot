@@ -1,5 +1,6 @@
 package com.github.hardelele.chess.chessboard.figures;
 
+import com.github.hardelele.chess.chessboard.BoardState;
 import com.github.hardelele.chess.chessboard.Coords;
 import com.github.hardelele.chess.chessboard.Square;
 
@@ -10,6 +11,6 @@ public interface Figure {
     Coords getCoords();
     void setCoords(Coords coords);
     HashMap<String, Square> getAbleMoves();
-    void countAbleMoves(HashMap<String, Square> boardState);
+    void countAbleMoves(BoardState boardState);
     void printAllAbleMoves();
 }
