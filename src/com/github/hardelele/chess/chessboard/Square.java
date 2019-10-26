@@ -1,28 +1,29 @@
 package com.github.hardelele.chess.chessboard;
 
 
+import com.github.hardelele.chess.chessboard.figures.Figure;
+import com.sun.org.glassfish.external.statistics.annotations.Reset;
+
 public class Square {
 
     Coords coords;
-    String state;
+
+    Figure figure;
+
+    {
+        figure = null;
+    }
 
     public Square() {
         this.coords = new Coords();
-        this.state = "empty";
     }
 
     public Square(Coords coords) {
-        this.coords = new Coords();
-        this.coords.setLetter(coords.getLetter());
-        this.coords.setNumber(coords.getNumber());
-        this.state = "empty";
+        this.coords = new Coords(coords.getNumber(), coords.getLetter());
     }
 
-    public Square(int number, String letter){
-        this.coords = new Coords();
-        this.coords.setLetter(letter);
-        this.coords.setNumber(number);
-        this.state = "empty";
+    public Square(int number, String letter) {
+        this.coords = new Coords(number, letter);
     }
 
     public Coords getCoords() {
@@ -30,15 +31,14 @@ public class Square {
     }
 
     public void setCoords(Coords coords) {
-        this.coords.setLetter(coords.getLetter());
-        this.coords.setNumber(coords.getNumber());
+        this.coords = new Coords(coords.getNumber(), coords.getLetter());
     }
 
-    public String getState() {
-        return state;
+    public Figure getFigure() {
+        return figure;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setFigure(Figure figure) {
+        this.figure = figure;
     }
 }
