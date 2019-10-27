@@ -1,17 +1,19 @@
 package com.github.hardelele.chess.chessboard;
 
-
 import com.github.hardelele.chess.chessboard.figures.Figure;
-import com.sun.org.glassfish.external.statistics.annotations.Reset;
+
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 public class Square {
 
     Coords coords;
-
-    private int whiteFiguresAbleToMove = 0;
-    private int blackFiguresAbleToMove = 0;
-
     Figure figure;
+
+    HashMap<String,Integer> ableToMove = new HashMap<String, Integer>() {{
+        put("white",0);
+        put("black",0);
+    }};
 
     {
         figure = null;
@@ -45,19 +47,16 @@ public class Square {
         this.figure = figure;
     }
 
-    public void setWhiteFiguresAbleToMove(int whiteFiguresAbleToMove) {
-        this.whiteFiguresAbleToMove = whiteFiguresAbleToMove;
-    }
-
-    public int getWhiteFiguresAbleToMove() {
-        return whiteFiguresAbleToMove;
-    }
-
-    public int getBlackFiguresAbleToMove() {
-        return blackFiguresAbleToMove;
-    }
-
-    public void setBlackFiguresAbleToMove(int blackFiguresAbleToMove) {
-        this.blackFiguresAbleToMove = blackFiguresAbleToMove;
+    public void calcBlackAbleToMove(BoardState boardState) {
+        StringTokenizer stringTokenizer;
+        String letter;
+        for (int i = 1; i<=8; i++) {
+            stringTokenizer = new StringTokenizer(boardState.letters);
+            for (int j = 0; j<8; j++) {
+                letter = stringTokenizer.nextToken();
+                System.out.println(letter+i);
+                boardState.squares.put(letter + i, new Square(i,letter));
+            }
+        }
     }
 }
