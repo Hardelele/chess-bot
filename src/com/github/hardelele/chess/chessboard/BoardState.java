@@ -1,7 +1,6 @@
 package com.github.hardelele.chess.chessboard;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -12,6 +11,18 @@ public class BoardState implements Serializable {
     HashMap<String,Square> squares = new HashMap<>();
 
     {
+        initializeHashMap();
+    }
+
+    public HashMap<String, Square> getSquares() {
+        return squares;
+    }
+
+    public void setSquares(HashMap<String, Square> squares) {
+        this.squares = squares;
+    }
+
+    private void initializeHashMap() {
         StringTokenizer stringTokenizer;
         String letter;
         for (int i = 1; i<=8; i++) {
@@ -22,13 +33,5 @@ public class BoardState implements Serializable {
                 squares.put(letter + i, new Square(i,letter));
             }
         }
-    }
-
-    public HashMap<String, Square> getSquares() {
-        return squares;
-    }
-
-    public void setSquares(HashMap<String, Square> squares) {
-        this.squares = squares;
     }
 }
