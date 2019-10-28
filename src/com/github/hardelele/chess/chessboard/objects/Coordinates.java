@@ -39,22 +39,42 @@ public class Coordinates {
         this.letter = letter;
     }
 
+    /**
+     * Getter for numerical coordinate
+     * @return integer value [1-8] (8 options)
+     */
     public int getNumber() {
         return number;
     }
 
+    /**
+     * Setter for numerical coordinate
+     * @param number - integer value [1-8] (8 options)
+     */
     public void setNumber(int number) {
         this.number = number;
     }
 
+    /**
+     * Getter for literal coordinate
+     * @return string value [A-H] (8 options)
+     */
     public String getLetter() {
         return letter;
     }
 
+    /**
+     * Setter for literal coordinate
+     * @param letter - string value [A-H] (8 options)
+     */
     public void setLetter(String letter) {
         this.letter = letter;
     }
 
+    /**
+     * @Override method Object.toString()
+     * @return string of two coordinates, there on first place literal coordinate, on second - numerical [A1-H8] (64 options)
+     */
     @Override
     public String toString() {
         return letter + number;
