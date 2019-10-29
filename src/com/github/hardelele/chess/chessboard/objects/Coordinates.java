@@ -104,7 +104,7 @@ public class Coordinates {
     }
 
     /**
-     * Parse coordinates from String.
+     * Static method - parse coordinates from String.
      * @param coords - string type: [A1-H8] (64 options)
      * @return new object of class: Coordinates
      */
