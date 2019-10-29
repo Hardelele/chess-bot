@@ -9,6 +9,25 @@ import com.github.hardelele.chess.chessboard.figures.Figure;
 
 public class Square {
 
+    enum ableToMove {
+
+        white(0), black(0);
+
+        int count;
+
+        ableToMove(int count) {
+            setCount(count);
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public void setCount(int count) {
+            this.count = count;
+        }
+    }
+
     Coordinates coordinates;
 
     Figure figure;
@@ -53,18 +72,34 @@ public class Square {
         setCoordinates(new Coordinates(coords));
     }
 
+    /**
+     * Getter for coordinates
+     * @return object of class coordinates
+     */
     public Coordinates getCoordinates() {
         return coordinates;
     }
 
+    /**
+     * Setter for coordinates
+     * @param coordinates - object of class Coordinates
+     */
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
 
+    /**
+     * Getter for figure
+     * @return object of class Figure
+     */
     public Figure getFigure() {
         return figure;
     }
 
+    /**
+     * Setter for figure
+     * @param figure - object of class Figure
+     */
     public void setFigure(Figure figure) {
         this.figure = figure;
     }
