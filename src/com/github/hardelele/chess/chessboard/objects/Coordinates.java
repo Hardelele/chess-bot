@@ -24,19 +24,33 @@ public class Coordinates {
      * letter and number as the minimum possible. So number = 1, and letter = "A".
      */
     public Coordinates() {
-        this.number = 1;
-        this.letter = "A";
+        setNumber(1);
+        setLetter("A");
+    }
+
+
+    /**
+     * Constructor: public Coordinates(int number, String letter)
+     *
+     * This one initialize variables letter and number as passed parameters - int number and String letter.
+     * Used methods setNumber() and setLetter(), that do what is written in their name.
+     * @param number
+     * @param letter
+     */
+    public Coordinates(int number, String letter) {
+        setNumber(number);
+        setLetter(letter);
     }
 
     /**
-     * public Coordinates(int number, String letter) - constructor with
-     * params. This one initialize variables letter and number as passed
-     * parameters - int number and String letter. So code is locke this
-     * for number: this.number = number; and this for letter: this.letter = letter;
+     * Constructor: public Coordinates(String coords)
+     *
+     * This one initialize variables letter and number.
+     * Taking them from the coords String, using the method setCoords(String coords).
+     * @param coords string type: [A1-H8] (64 options)
      */
-    public Coordinates(int number, String letter) {
-        this.number = number;
-        this.letter = letter;
+    public Coordinates(String coords) {
+        setCoords(coords);
     }
 
     /**
@@ -65,7 +79,7 @@ public class Coordinates {
 
     /**
      * Setter for literal coordinate
-     * @param letter - string value [A-H] (8 options)
+     * @param letter - string type: [A-H] (8 options)
      */
     public void setLetter(String letter) {
         this.letter = letter;
@@ -73,10 +87,28 @@ public class Coordinates {
 
     /**
      * @Override method Object.toString()
-     * @return string of two coordinates, there on first place literal coordinate, on second - numerical [A1-H8] (64 options)
+     * @return string type: [A1-H8] (64 options).
      */
     @Override
     public String toString() {
         return letter + number;
+    }
+
+    /**
+     * Set letter and number, using String of coords.
+     * @param coords - string type: [A1-H8] (64 options)
+     */
+    public void setCoords(String coords) {
+        setLetter(coords.substring(0,1));
+        setNumber(Integer.parseInt(coords.substring(1)));
+    }
+
+    /**
+     * Parse coordinates from String.
+     * @param coords - string type: [A1-H8] (64 options)
+     * @return new object of class: Coordinates
+     */
+    public static Coordinates parseCoords(String coords) {
+        return new Coordinates(coords);
     }
 }
