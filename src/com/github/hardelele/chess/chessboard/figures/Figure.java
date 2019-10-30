@@ -1,5 +1,9 @@
 package com.github.hardelele.chess.chessboard.figures;
 
-public abstract class Figure implements FigureInterface {
+public interface Figure {
 
+    void setCoordinates(int letterCoordinateNumber, int numericCoordinateNumber);
+    String getCoordinatesInChessNotation();
+    void setColor(String color);
+    String getColor();
 }
