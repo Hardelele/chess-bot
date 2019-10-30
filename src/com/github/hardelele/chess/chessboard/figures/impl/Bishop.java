@@ -1,4 +1,6 @@
 package com.github.hardelele.chess.chessboard.figures.impl;
 
-public class Bishop {
+import com.github.hardelele.chess.chessboard.figures.Figure;
+
+public class Bishop extends Figure {
 }

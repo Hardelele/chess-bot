@@ -1,4 +1,6 @@
 package com.github.hardelele.chess.chessboard.figures.impl;
 
-public class Knight {
+import com.github.hardelele.chess.chessboard.figures.Figure;
+
+public class Knight extends Figure {
 }

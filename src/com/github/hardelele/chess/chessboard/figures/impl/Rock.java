@@ -1,5 +1,7 @@
 package com.github.hardelele.chess.chessboard.figures.impl;
 
-public class Rock {
+import com.github.hardelele.chess.chessboard.figures.Figure;
+
+public class Rock extends Figure {
 
 }
