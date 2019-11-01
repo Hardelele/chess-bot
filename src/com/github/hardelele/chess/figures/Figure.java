@@ -1,4 +1,4 @@
-package com.github.hardelele.chess.chessboard.figures;
+package com.github.hardelele.chess.figures;
 
 public interface Figure {
 
@@ -6,4 +6,5 @@ public interface Figure {
     String getCoordinatesInChessNotation();
     void setColor(String color);
     String getColor();
+
 }
