@@ -1,10 +1,11 @@
 package com.github.hardelele.chess.figures;
 
 import com.github.hardelele.chess.ChessApplication;
+import com.github.hardelele.chess.chessbords.impl.Coordinates;
 
 public abstract class FigureImpl implements Figure {
 
-    int letterCoordinateNumber, numberCoordinate;
+    Coordinates coordinates;
 
     String color;
 
@@ -15,14 +16,22 @@ public abstract class FigureImpl implements Figure {
 
     @Override
     public void setCoordinates(int letterCoordinateNumber, int numberCoordinate) {
-        this.letterCoordinateNumber = letterCoordinateNumber;
-        this.numberCoordinate = numberCoordinate;
+        coordinates = new Coordinates(letterCoordinateNumber, numberCoordinate);
     }
 
     @Override
     public String getCoordinatesInChessNotation() {
-        String letterCoordinate = ChessApplication.letters.get(letterCoordinateNumber-1);
-        return letterCoordinate + numberCoordinate;
+        return coordinates.toString();
+    }
+
+    @Override
+    public int getLetterCoordinateNumber() {
+        return coordinates.getLetterCoordinateNumber();
+    }
+
+    @Override
+    public int getNumericCoordinateNumber() {
+        return coordinates.getNumber();
     }
 
     @Override
