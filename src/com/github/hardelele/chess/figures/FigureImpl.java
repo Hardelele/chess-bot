@@ -1,6 +1,6 @@
-package com.github.hardelele.chess.chessboard.figures;
+package com.github.hardelele.chess.figures;
 
-import com.github.hardelele.chess.visualize.ChessApplication;
+import com.github.hardelele.chess.ChessApplication;
 
 public abstract class FigureImpl implements Figure {
 
