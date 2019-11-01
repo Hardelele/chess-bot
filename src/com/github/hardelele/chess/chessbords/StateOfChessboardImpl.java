@@ -3,9 +3,10 @@ package com.github.hardelele.chess.chessbords;
 import com.github.hardelele.chess.figures.Figure;
 import com.github.hardelele.chess.figures.impl.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class StateOfChessboardImpl implements StateOfChessboard {
+public abstract class StateOfChessboardImpl implements StateOfChessboard, Serializable {
 
     private ArrayList<Figure> figuresList = new ArrayList<>();
 
