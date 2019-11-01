@@ -114,9 +114,9 @@ public class Coordinates {
      * @return
      */
     public int getLetterCoordinateNumber() {
-        for (int counter = 1; counter < 8; counter++) {
+        for (int counter = 0; counter < 8; counter++) {
             if (letters.get(counter).equals(letter)) {
-                return counter;
+                return counter+1;
             }
         }
         return -1;

@@ -65,7 +65,7 @@ public class ChessApplication extends Application {
 
         for (Figure figure : figuresList) {
             int numericCoordinateNumber = figure.getNumericCoordinateNumber()-1;
-            int letterCoordinateNumber = figure.getLetterCoordinateNumber();
+            int letterCoordinateNumber = figure.getLetterCoordinateNumber()-1;
             figures.add(new Rectangle(12+(numericCoordinateNumber*50),12+(letterCoordinateNumber*50),30,30));
 
             if (figure.getColor().equals("white")) {
