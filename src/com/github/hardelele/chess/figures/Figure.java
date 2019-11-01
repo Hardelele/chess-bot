@@ -6,5 +6,6 @@ public interface Figure {
     String getCoordinatesInChessNotation();
     void setColor(String color);
     String getColor();
-
+    int getLetterCoordinateNumber();
+    int getNumericCoordinateNumber();
 }
