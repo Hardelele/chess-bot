@@ -1,4 +1,4 @@
-package com.github.hardelele.chess.visualize;
+package com.github.hardelele.chess;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -19,6 +19,7 @@ public class ChessApplication extends Application {
     }};
 
     public static void main(String[] args) {
+        CoreProcessing coreProcessing = new CoreProcessing();
         launch(args);
     }
 
