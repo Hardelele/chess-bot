@@ -1,16 +1,25 @@
 package com.github.hardelele.chess;
 
+import com.github.hardelele.chess.chessbords.impl.Coordinates;
 import com.github.hardelele.chess.figures.Figure;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 public class ChessApplication extends Application {
+
+    Group root = new Group();
+    CoreProcessing coreProcessing = new CoreProcessing();
+
+    final int sceneWidth = 450;
+    final int sceneHeight = 600;
+    final int squareSize = 50;
 
     public static void main(String[] args) {
         launch(args);
@@ -18,68 +27,92 @@ public class ChessApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        CoreProcessing coreProcessing = new CoreProcessing();
 
-        Group root = new Group();
-        Scene scene = new Scene(root,404,500);
+        Scene scene = new Scene(root, sceneWidth, sceneHeight);
 
-        ArrayList<Rectangle> squares = new ArrayList<>();
-        int counter = 0;
-        int counterHeight = 0;
-        int counterWidth = 0;
-        while (true) {
-            if(counterWidth>=400) {
-                counterWidth = 0;
-                counterHeight += 50;
-                if (counterHeight>=400) {
-                    break;
-                }
-            }
+        drawChessboard();
+        drawFigures();
+        drawNotations();
 
-            squares.add(new Rectangle(2+counterWidth,2+counterHeight,50,50));
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 
-            if ((counterHeight/50)%2 !=0) {
-                if( (counter % 2) != 0) {
-                    squares.get(counter).setFill(Color.WHITE);
-                } else {
-                    squares.get(counter).setFill(Color.GRAY);
-                }
-            } else {
-                if( (counter % 2) == 0) {
-                    squares.get(counter).setFill(Color.WHITE);
-                } else {
-                    squares.get(counter).setFill(Color.GRAY);
-                }
-            }
+    private void drawNotations() {
 
-            squares.get(counter).setStroke(Color.BLACK);
-            root.getChildren().add(squares.get(counter));
-            counterWidth += 50;
-            counter++;
+        drawLetterNotations();
+        drawNumberNotations();
+    }
+
+    private void drawLetterNotations() {
+
+        for (int counter = 0; counter < 8; counter++) {
+            drawOneNotation(8,52+(counter*squareSize),Coordinates.letters.get(7-counter));
+            drawOneNotation(433,52+(counter*squareSize),Coordinates.letters.get(7-counter));
         }
+    }
+
+    private void drawNumberNotations() {
+
+        for (int counter = 0; counter < 8; counter++) {
+            drawOneNotation(48+(counter*squareSize),18,(counter+1)+"");
+            drawOneNotation(48+(counter*squareSize),443,(counter+1)+"");
+        }
+    }
+
+    private void drawOneNotation(int x, int y, String text) {
+
+        Text notation = new Text(x, y, text);
+        root.getChildren().add(notation);
+    }
+
+    private void drawChessboard() {
+
+        for (int counterHeight = 0; counterHeight < 8; counterHeight++) {
+            for (int counterWidth = 0; counterWidth < 8; counterWidth++) {
+                drawOneSquare(counterHeight, counterWidth);
+            }
+        }
+    }
+
+    private void drawOneSquare(int counterHeight, int counterWidth) {
+
+        Rectangle square = new Rectangle(25+counterWidth*squareSize,25+counterHeight*squareSize,squareSize,squareSize);
+        setSquareColor(square, counterHeight+counterWidth);
+        square.setStroke(Color.BLACK);
+        root.getChildren().add(square);
+    }
+
+    private void setSquareColor(Rectangle square, int squareNumber) {
+
+        if ((squareNumber % 2) != 0) {
+            square.setFill(Color.WHITE);
+        } else {
+            square.setFill(Color.GRAY);
+        }
+    }
+
+    private void drawFigures() {
 
         ArrayList<Rectangle> figures = new ArrayList<>();
-        counter = 0;
-        ArrayList<Figure> figuresList;
-        figuresList = coreProcessing.getFiguresList();
+
+        ArrayList<Figure> figuresList = coreProcessing.getFiguresList();
+
+        int counter = 0;
 
         for (Figure figure : figuresList) {
             int numericCoordinateNumber = figure.getNumericCoordinateNumber()-1;
             int letterCoordinateNumber = figure.getLetterCoordinateNumber()-1;
-            figures.add(new Rectangle(12+(numericCoordinateNumber*50),12+(letterCoordinateNumber*50),30,30));
+            figures.add(new Rectangle(35+(numericCoordinateNumber*squareSize),35+(letterCoordinateNumber*squareSize),30,30));
 
             if (figure.getColor().equals("white")) {
                 figures.get(counter).setFill(Color.GREEN);
             } else {
                 figures.get(counter).setFill(Color.RED);
             }
-
             figures.get(counter).setStroke(Color.BLACK);
             root.getChildren().add(figures.get(counter));
             counter++;
         }
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 }
