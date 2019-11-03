@@ -1,6 +1,8 @@
 package com.github.hardelele.chess.figures;
 
-public interface Figure {
+import java.io.Serializable;
+
+public interface Figure extends Serializable {
 
     void setCoordinates(int letterCoordinateNumber, int numericCoordinateNumber);
     String getCoordinatesInChessNotation();
