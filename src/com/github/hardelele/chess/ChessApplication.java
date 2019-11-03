@@ -1,16 +1,23 @@
 package com.github.hardelele.chess;
 
+import com.github.hardelele.chess.chessbords.impl.ClearChessboard;
 import com.github.hardelele.chess.chessbords.impl.Coordinates;
 import com.github.hardelele.chess.figures.Figure;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ChessApplication extends Application {
 
@@ -30,12 +37,75 @@ public class ChessApplication extends Application {
 
         Scene scene = new Scene(root, sceneWidth, sceneHeight);
 
-        drawChessboard();
-        drawFigures();
-        drawNotations();
+        addSaveButton();
+        addLoadButton();
+        generateChessboard();
 
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void generateChessboard() {
+        drawChessboard();
+        drawFigures();
+        drawNotations();
+    }
+
+    private void addSaveButton() {
+        Button saveButton = new Button("Save");
+        saveButton.setMinWidth(80);
+        saveButton.setMinHeight(30);
+        saveButton.setLayoutX(350);
+        saveButton.setLayoutY(460);
+        saveButtonEvent(saveButton);
+        root.getChildren().add(saveButton);
+    }
+
+    private void saveButtonEvent(Button saveButton) {
+        saveButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Pls, Enter file name to save:");
+                String fileName = scanner.nextLine();
+                StatesSerializer statesSerializer = new StatesSerializer();
+                try {
+                    statesSerializer.save(coreProcessing.mainStateOfChessboard,fileName);
+                    coreProcessing.mainStateOfChessboard = new ClearChessboard();
+                    generateChessboard();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void addLoadButton() {
+        Button loadButton = new Button("Load");
+        loadButton.setMinWidth(80);
+        loadButton.setMinHeight(30);
+        loadButton.setLayoutX(350);
+        loadButton.setLayoutY(500);
+        loadButtonEvent(loadButton);
+        root.getChildren().add(loadButton);
+    }
+
+    private void loadButtonEvent(Button loadButton) {
+        loadButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Pls, Enter file name to load:");
+                String fileName = scanner.nextLine();
+                StatesSerializer statesSerializer = new StatesSerializer();
+                try {
+                    coreProcessing.mainStateOfChessboard = statesSerializer.load(fileName);
+                    generateChessboard();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void drawNotations() {
@@ -94,25 +164,26 @@ public class ChessApplication extends Application {
 
     private void drawFigures() {
 
-        ArrayList<Rectangle> figures = new ArrayList<>();
-
         ArrayList<Figure> figuresList = coreProcessing.getFiguresList();
-
-        int counter = 0;
 
         for (Figure figure : figuresList) {
             int numericCoordinateNumber = figure.getNumericCoordinateNumber()-1;
             int letterCoordinateNumber = figure.getLetterCoordinateNumber()-1;
-            figures.add(new Rectangle(35+(numericCoordinateNumber*squareSize),35+(letterCoordinateNumber*squareSize),30,30));
-
-            if (figure.getColor().equals("white")) {
-                figures.get(counter).setFill(Color.GREEN);
-            } else {
-                figures.get(counter).setFill(Color.RED);
-            }
-            figures.get(counter).setStroke(Color.BLACK);
-            root.getChildren().add(figures.get(counter));
-            counter++;
+            drawOneFigure(figure,numericCoordinateNumber,letterCoordinateNumber);
         }
+    }
+
+    private void drawOneFigure(Figure figure, int numericCoordinateNumber, int letterCoordinateNumber) {
+
+        Rectangle figureFX = new Rectangle(35+(numericCoordinateNumber*squareSize),35+(letterCoordinateNumber*squareSize),30,30);
+
+        if (figure.getColor().equals("white")) {
+            figureFX.setFill(Color.GREEN);
+        } else {
+            figureFX.setFill(Color.RED);
+        }
+
+        figureFX.setStroke(Color.BLACK);
+        root.getChildren().add(figureFX);
     }
 }
