@@ -2,9 +2,10 @@ package com.github.hardelele.chess.chessbords;
 
 import com.github.hardelele.chess.figures.Figure;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public interface StateOfChessboard {
+public interface StateOfChessboard extends Serializable {
 
     ArrayList<Figure> getFiguresList();
     void addPawn(String color, int letterCoordinateNumber, int numberCoordinate);
