@@ -1,5 +1,6 @@
 package com.github.hardelele.chess.chessbords.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * right (the kingside). The horizontal rows of squares, called ranks,
  * are numbered 1 to 8 starting from White's side of the board.
  */
-public class Coordinates {
+public class Coordinates implements Serializable {
 
     public static final ArrayList<String> letters = new ArrayList<String>() {{
         add("A");
