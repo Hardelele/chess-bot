@@ -14,4 +14,5 @@ public interface StateOfChessboard extends Serializable {
     void addKnight(String color, int letterCoordinateNumber, int numberCoordinate);
     void addRook(String color, int letterCoordinateNumber, int numberCoordinate);
     void addBishop(String color, int letterCoordinateNumber, int numberCoordinate);
+    void killFigure(int letterCoordinateNumber, int numberCoordinate);
 }
