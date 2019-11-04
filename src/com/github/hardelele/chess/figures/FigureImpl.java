@@ -7,9 +7,12 @@ public abstract class FigureImpl implements Figure {
 
     Coordinates coordinates;
 
+    int id;
+
     String color;
 
-    public FigureImpl(String color, int letterCoordinateNumber, int numberCoordinate) {
+    public FigureImpl(int id, String color, int letterCoordinateNumber, int numberCoordinate) {
+        setId(id);
         setCoordinates(letterCoordinateNumber,numberCoordinate);
         setColor(color);
     }
@@ -42,5 +45,15 @@ public abstract class FigureImpl implements Figure {
     @Override
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 }
