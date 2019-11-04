@@ -3,18 +3,62 @@ package com.github.hardelele.chess.figures;
 import com.github.hardelele.chess.ChessApplication;
 import com.github.hardelele.chess.chessbords.impl.Coordinates;
 
+import java.util.ArrayList;
+
 public abstract class FigureImpl implements Figure {
 
-    Coordinates coordinates;
+    private ArrayList<String> movesList = new ArrayList<>();
 
-    int id;
+    private ArrayList<String> attacksList = new ArrayList<>();
 
-    String color;
+    private Coordinates coordinates;
+
+    private int id;
+
+    private String color;
 
     public FigureImpl(int id, String color, int letterCoordinateNumber, int numberCoordinate) {
         setId(id);
         setCoordinates(letterCoordinateNumber,numberCoordinate);
         setColor(color);
+    }
+
+    protected boolean isChessboardEnd(Coordinates moveCoords) {
+        boolean isTopBorder = moveCoords.getLetterCoordinateNumber() >= 8;
+        boolean isBottomBorder = moveCoords.getLetterCoordinateNumber() < 0;
+        boolean isRightBorder = moveCoords.getNumber() >= 8;
+        boolean isLeftBorder = moveCoords.getNumber() < 0;
+        return isBottomBorder||isLeftBorder||isRightBorder||isTopBorder;
+    }
+
+    @Override
+    public void cleanMovesList() {
+        movesList = new ArrayList<>();
+    }
+
+    @Override
+    public void cleanAttackList() {
+        attacksList = new ArrayList<>();
+    }
+
+    @Override
+    public void addOneMove(String coords) {
+        movesList.add(coords);
+    }
+
+    @Override
+    public void addOneAttack(String coords) {
+        attacksList.add(coords);
+    }
+
+    @Override
+    public ArrayList<String> getMovesList() {
+        return movesList;
+    }
+
+    @Override
+    public ArrayList<String> getAttacksList() {
+        return attacksList;
     }
 
     @Override
