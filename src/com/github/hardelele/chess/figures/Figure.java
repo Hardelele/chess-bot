@@ -1,7 +1,7 @@
 package com.github.hardelele.chess.figures;
 
 import java.io.Serializable;
-import java.util.PriorityQueue;
+import java.util.ArrayList;
 
 public interface Figure extends Serializable {
 
@@ -13,5 +13,11 @@ public interface Figure extends Serializable {
     int getNumericCoordinateNumber();
     void setId(int id);
     int getId();
-    PriorityQueue<String> getMovesList();
+    void calculateAllMoves(ArrayList<String> movesList);
+    void addOneMove(String coords);
+    void addOneAttack(String coords);
+    ArrayList<String> getMovesList();
+    ArrayList<String> getAttacksList();
+    void cleanMovesList();
+    void cleanAttackList();
 }
