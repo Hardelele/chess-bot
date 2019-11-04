@@ -1,5 +1,6 @@
 package com.github.hardelele.chess.chessbords;
 
+import com.github.hardelele.chess.chessbords.impl.Coordinates;
 import com.github.hardelele.chess.figures.Figure;
 import com.github.hardelele.chess.figures.impl.*;
 
@@ -21,54 +22,84 @@ public abstract class StateOfChessboardImpl implements StateOfChessboard {
     @Override
     public void addPawn(String color, int letterCoordinateNumber, int numberCoordinate) {
         if (color.equals("white")) {
-            whiteFigures.add(new Pawn(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            whiteFigures.add(new Pawn(id, color,letterCoordinateNumber,numberCoordinate));
         } else {
-            blackFigures.add(new Pawn(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            blackFigures.add(new Pawn(id, color,letterCoordinateNumber,numberCoordinate));
         }
     }
 
     @Override
     public void addQueen(String color, int letterCoordinateNumber, int numberCoordinate) {
         if (color.equals("white")) {
-            whiteFigures.add(new Queen(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            whiteFigures.add(new Queen(id, color,letterCoordinateNumber,numberCoordinate));
         } else {
-            blackFigures.add(new Queen(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            blackFigures.add(new Queen(id, color,letterCoordinateNumber,numberCoordinate));
         }
     }
 
     @Override
     public void addBishop(String color, int letterCoordinateNumber, int numberCoordinate) {
         if (color.equals("white")) {
-            whiteFigures.add(new Bishop(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            whiteFigures.add(new Bishop(id, color,letterCoordinateNumber,numberCoordinate));
         } else {
-            blackFigures.add(new Bishop(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            blackFigures.add(new Bishop(id, color,letterCoordinateNumber,numberCoordinate));
         }
     }
 
     @Override
     public void addKnight(String color, int letterCoordinateNumber, int numberCoordinate) {
         if (color.equals("white")) {
-            whiteFigures.add(new Knight(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            whiteFigures.add(new Knight(id, color,letterCoordinateNumber,numberCoordinate));
         } else {
-            blackFigures.add(new Knight(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            blackFigures.add(new Knight(id, color,letterCoordinateNumber,numberCoordinate));
         }
     }
 
     @Override
     public void addRook(String color, int letterCoordinateNumber, int numberCoordinate) {
         if (color.equals("white")) {
-            whiteFigures.add(new Rock(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            whiteFigures.add(new Rock(id, color,letterCoordinateNumber,numberCoordinate));
         } else {
-            blackFigures.add(new Rock(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            blackFigures.add(new Rock(id, color,letterCoordinateNumber,numberCoordinate));
         }
     }
 
     @Override
     public void addKing(String color, int letterCoordinateNumber, int numberCoordinate){
         if (color.equals("white")) {
-            whiteFigures.add(new King(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            whiteFigures.add(new King(id, color,letterCoordinateNumber,numberCoordinate));
         } else {
-            blackFigures.add(new King(color,letterCoordinateNumber,numberCoordinate));
+            int id = whiteFigures.size();
+            blackFigures.add(new King(id, color,letterCoordinateNumber,numberCoordinate));
+        }
+    }
+
+    @Override
+    public void killFigure(int letterCoordinateNumber, int numberCoordinate) {
+
+        for (Figure figure : whiteFigures) {
+            if (figure.getCoordinatesInChessNotation()
+                    .equals(new Coordinates(letterCoordinateNumber,numberCoordinate).toString())) {
+                whiteFigures.remove(figure.getId());
+            }
+        }
+
+        for (Figure figure : blackFigures) {
+            if (figure.getCoordinatesInChessNotation()
+                    .equals(new Coordinates(letterCoordinateNumber,numberCoordinate).toString())) {
+                blackFigures.remove(figure.getId());
+            }
         }
     }
 }
