@@ -1,6 +1,6 @@
 package com.github.hardelele.chess;
 
-import com.github.hardelele.chess.chessbords.StateOfChessboard;
+import com.github.hardelele.chess.models.chessboard.StateOfChessboard;
 
 import java.io.*;
 

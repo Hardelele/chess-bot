@@ -1,6 +1,6 @@
-package com.github.hardelele.chess.figures.impl;
+package com.github.hardelele.chess.models.figures.impl;
 
-import com.github.hardelele.chess.figures.FigureImpl;
+import com.github.hardelele.chess.models.figures.FigureImpl;
 
 public class Rock extends FigureImpl {
 

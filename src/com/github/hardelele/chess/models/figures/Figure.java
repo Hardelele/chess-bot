@@ -1,4 +1,4 @@
-package com.github.hardelele.chess.figures;
+package com.github.hardelele.chess.models.figures;
 
 import java.io.Serializable;
 

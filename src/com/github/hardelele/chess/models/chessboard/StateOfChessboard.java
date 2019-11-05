@@ -4,4 +4,6 @@ import java.io.Serializable;
 
 public interface StateOfChessboard extends Serializable {
 
+    void putFigure();
+
 }
